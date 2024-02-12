@@ -108,28 +108,58 @@ public class mainStory {
 
 
     //Adding Methods
-    public void brandAdd(){
-       System.out.println(" Marka ekle : ");
-        System.out.println(" Lütfen aşağıdaki tablodaki markalardan farklı bir marka girniz ! ");
+public void brandAdd() {
+        Scanner inp = new Scanner(System.in);
+
+        System.out.println("Marka ekle:");
+        System.out.println("Lütfen aşağıdaki tablodaki markalardan farklı bir marka giriniz:");
+        printMobilePhoneBrands(brandList());
+        System.out.println();
+
+        System.out.println("Eklemek istediğiniz markayı baş harfi büyük olarak şekilde  giriniz:");
+        String input = inp.nextLine();
+
+        
+        boolean uniqueName = true;
+        do {
+            uniqueName = true; 
+
+            for (Brand brand : brands) {
+                if (brand.getName().equalsIgnoreCase(input)) {
+                    uniqueName = false; 
+                    System.out.println("Bu marka zaten var, lütfen farklı bir marka giriniz:");
+                    input = inp.nextLine();
+                    break; 
+                }
+            }
+        } while (!uniqueName); 
+
+        System.out.println("Eklemek istediğiniz marka için benzersiz bir ID giriniz:");
+        int idInput = inp.nextInt();
+
+        
+        boolean uniqueId = true;
+        do {
+            uniqueId = true; 
+
+            for (Brand brand : brands) {
+                if (brand.getId() == idInput) {
+                    uniqueId = false; 
+                    System.out.println("Bu ID zaten kullanılıyor, lütfen farklı bir ID giriniz:");
+                    idInput = inp.nextInt();
+                    break; 
+                }
+            }
+        } while (!uniqueId); 
+
+        brands.add(new Brand(idInput, input));
+        System.out.println("Marka başarıyla eklendi. Yeni ürün listesi:");
+        System.out.println("-------------------------------------------");
+        System.out.println();
         printMobilePhoneBrands(brandList());
         System.out.println();
         System.out.println();
-       System.out.println("Eklemek istediginiz markayi giriniz : ");
-       String input=inp.nextLine();
-
-       System.out.println("Eklemek istediginiz marka icin benzersiz id girin  : ");
-       int idInput=inp.nextInt();
-
-
-
-       brands.add(new Brand(idInput,input));
-       System.out.println("Marka basariyla eklendi yeni urun listesi : ");
-       System.out.println("-------------------------------------------");
-        System.out.println();
-        printMobilePhoneBrands(brandList());
-        System.out.println();
-        System.out.println();
-       }
+    }
 
     public MobilePhones mobilePhoneAdd(){
         System.out.println("Telefon ekle : ");
