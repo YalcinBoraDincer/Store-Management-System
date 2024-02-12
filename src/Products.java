@@ -10,8 +10,8 @@ public class Products {
     }
     public static ArrayList<Products> catagories(){
         ArrayList<Products> catagories=new ArrayList<>();
-        catagories.add(new Products(1,"MobilePhones"));
-        catagories.add(new Products(2,"Laptops"));
+        catagories.add(new Products(1,"Telefonlar"));
+        catagories.add(new Products(2,"Laptoplar"));
         return catagories;
 }
 
